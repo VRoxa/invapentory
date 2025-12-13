@@ -88,3 +88,5 @@ deployment_keys.tar
 
 .github/.release
 release-artifacts-*
+# Local Netlify folder
+.netlify
