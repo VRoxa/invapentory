@@ -6,11 +6,25 @@ import { ItemComponent } from './item.component';
   selector: 'inventory',
   imports: [ItemComponent],
   template: `
-    @for (item of inventory.items; track item.taste) {
-      <item [item]="item" />
-    }
+    <div class="inventory">
+      @for (item of inventory.items; track item.taste) {
+        <div class="inventory__item">
+          <item [item]="item" />
+        </div>
+      }
+    </div>
   `,
-  styles: [``],
+  styles: [`
+    .inventory {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      &__item {
+        flex: 0 1 calc(50% - 0.5rem);
+      }
+    }
+  `],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
