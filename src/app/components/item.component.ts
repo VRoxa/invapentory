@@ -17,9 +17,11 @@ type ItemViewModel = Item & {
         <img class="img-hover" [src]="vm.plainImgSrc" [alt]="vm.imgSrc">
       </div>
 
-      <div class="item__taste">
+      <div class="item__taste-lab">
         @for (taste of vm.taste; track taste) {
-          <span class="item__taste-line">{{ taste }}</span>
+          <span class="taste-bubble">
+            {{ taste }}
+          </span>
         }
       </div>
 
@@ -55,16 +57,6 @@ type ItemViewModel = Item & {
           opacity: 0;
           z-index: 1;
         }
-
-        &:hover {
-          .img-hover {
-            opacity: 1;
-            transform: scale(1.2);
-          }
-          .img-idle {
-            transform: scale(1.1);
-          }
-        }
       }
 
       &__taste {
@@ -92,6 +84,42 @@ type ItemViewModel = Item & {
         &.green { background-color: rgb(136, 235, 166); }
       }
 
+      &__taste-lab {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+        perspective: 1000px; // Prep for some 3D flavor
+      }
+
+      .taste-bubble {
+        padding: 4px 12px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        font-style: italic;
+        font-weight: bold;
+        color: #eee;
+        transition: all 0.5s ease-out;
+      }
+
+      &:hover {
+        .taste-bubble {
+          color: #ff5722;
+          transform: scale(1.1); 
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          background: white;
+        }
+
+        .img-hover {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        .img-idle {
+          transform: scale(1.1);
+        }
+      }
+
       // State Modifier
       &.out-of-stock {
         .item__img-container {
@@ -101,6 +129,11 @@ type ItemViewModel = Item & {
           &:hover {
             filter: grayscale(50%);
           }
+        }
+
+        .taste-bubble {
+          opacity: .6;
+          text-decoration: line-through;
         }
       }
     }
