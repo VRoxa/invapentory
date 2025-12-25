@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Inventory } from '../models/item.model';
 import { ItemComponent } from './item.component';
 
@@ -7,7 +7,7 @@ import { ItemComponent } from './item.component';
   imports: [ItemComponent],
   template: `
     <div class="inventory">
-      @for (item of inventory.items; track item.taste) {
+      @for (item of inventory().items; track item.taste) {
         <div class="inventory__item">
           <item [item]="item" />
         </div>
@@ -29,5 +29,5 @@ import { ItemComponent } from './item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent {
-  @Input() inventory!: Inventory;
+  inventory = input.required<Inventory>();
 }
