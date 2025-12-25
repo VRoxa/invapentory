@@ -71,7 +71,7 @@ type ItemViewModel = Item & { stockClass: string }
 
     .out-of-stock {
       .item__img {
-        filter: grayscale(100%);
+        filter: grayscale(80%);
       }
     }
   `],
