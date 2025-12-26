@@ -5,14 +5,16 @@ import { HeaderComponent } from './components/header.component';
 import { InventoryComponent } from './components/inventory.component';
 import { InventoryService } from './services/inventory.service';
 import { Inventory } from './models/item.model';
+import { FooterComponent } from './components/footer.component';
 
 @Component({
   selector: 'app-root',
-  imports: [AsyncPipe, HeaderComponent, InventoryComponent],
+  imports: [AsyncPipe, HeaderComponent, FooterComponent, InventoryComponent],
   template: `
     @if (inventory$ | async; as inventory) {
       <app-header (onSave)="save(inventory)" />
       <inventory [inventory]="inventory" />
+      <app-footer />
     }
   `,
 })

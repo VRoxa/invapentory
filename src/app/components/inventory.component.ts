@@ -20,6 +20,8 @@ import { ItemComponent } from './item.component';
       flex-wrap: wrap;
       gap: 1rem;
 
+      z-index: 1;
+
       &__item {
         flex: 0 1 calc(50% - 0.5rem);
       }

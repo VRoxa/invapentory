@@ -12,6 +12,8 @@ const styles = `
     align-items: center;
     width: 100%;
 
+    z-index: 1;
+
     &__img-container {
       display: grid;
       place-items: center;
@@ -29,7 +31,7 @@ const styles = `
 
       .img-hover {
         opacity: 0;
-        z-index: 2;
+        z-index: 3;
       }
     }
 
@@ -73,7 +75,7 @@ const styles = `
     .taste-bubble {
       padding: .3rem .4rem;
       border-radius: 1rem;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.2);
       border: 1px solid rgba(0, 0, 0, 0.05);
       font-style: italic;
       font-weight: bold;
@@ -123,7 +125,7 @@ const styles = `
       }
 
       .taste-bubble {
-        opacity: .6;
+        // opacity: .6;
         text-decoration: line-through;
       }
     }
