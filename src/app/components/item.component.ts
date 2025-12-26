@@ -73,7 +73,7 @@ const styles = `
       font-style: italic;
       font-weight: bold;
       text-align: center;
-      color: #eee;
+      color: var(--contrast);
       transition: all 0.5s ease-out;
     }
 
@@ -81,7 +81,7 @@ const styles = `
       .taste-bubble {
         color: var(--accent-color-500);
         transform: scale(1.1); 
-        background: white;
+        background: var(--contrast);
       }
 
       .img-hover {

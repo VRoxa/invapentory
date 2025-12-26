@@ -23,7 +23,7 @@ import { Item } from "../models/item.model";
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
-        background: white;
+        background: var(--contrast);
         border: none;
         font-size: 1.3rem;
         color: var(--accent-color-500);

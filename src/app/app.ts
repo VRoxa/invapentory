@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { map } from 'rxjs';
+import { map, startWith, Subject, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { HeaderComponent } from './components/header.component';
 import { InventoryComponent } from './components/inventory.component';
@@ -11,24 +11,24 @@ import { Inventory } from './models/item.model';
   imports: [AsyncPipe, HeaderComponent, InventoryComponent],
   template: `
     @if (inventory$ | async; as inventory) {
-      <div class="header">
-        <app-header />
-      </div>
-
+      <app-header (onSave)="save(inventory)" />
       <inventory [inventory]="inventory" />
     }
   `,
-  styles: [],
 })
 export class App {
   private readonly service = inject(InventoryService);
+  private readonly refresh$$ = new Subject<void>();
 
-  inventory$ = this.service.getInventory().pipe(
+  inventory$ = this.refresh$$.pipe(
+    startWith(void 0),
+    switchMap(() => this.service.getInventory()),
     map(({ items }) => [...items].sort(({ stock: a }, { stock: b }) => b - a )),
     map(items => ({ items })),
   );
 
   async save(inventory: Inventory) {
-    console.log('about to save', inventory)
+    console.log('about to save', inventory);
+    this.refresh$$.next();
   }
 }
