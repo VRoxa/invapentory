@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { InventoryService } from './services/inventory.service';
+import { HeaderComponent } from './components/header.component';
 import { InventoryComponent } from './components/inventory.component';
+import { InventoryService } from './services/inventory.service';
 import { Inventory } from './models/item.model';
 
 @Component({
   selector: 'app-root',
-  imports: [AsyncPipe, InventoryComponent],
+  imports: [AsyncPipe, HeaderComponent, InventoryComponent],
   template: `
-
     @if (inventory$ | async; as inventory) {
       <div class="header">
-        <button (click)="save(inventory)">Save</button>
+        <app-header />
       </div>
 
       <inventory [inventory]="inventory" />

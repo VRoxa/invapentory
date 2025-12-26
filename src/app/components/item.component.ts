@@ -79,7 +79,7 @@ const styles = `
 
     &:hover {
       .taste-bubble {
-        color: #ff5722;
+        color: var(--accent-color-500);
         transform: scale(1.1); 
         background: white;
       }

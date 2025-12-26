@@ -26,7 +26,7 @@ import { Item } from "../models/item.model";
         background: white;
         border: none;
         font-size: 1.3rem;
-        color: #ff5722;
+        color: var(--accent-color-500);
       }
 
       span {
