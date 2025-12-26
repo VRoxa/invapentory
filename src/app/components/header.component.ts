@@ -30,9 +30,12 @@ type PhoneViewModel = {
             </g>
           </svg>
 
-          @if (state.isAdmin()) {
-            <button (click)="onSave.emit()">Save</button>
-          }
+          <button
+            (click)="this.onSave.emit()"
+            [disabled]="!state.isAdmin()"
+          >
+            Save
+          </button>
         </div>
 
         <div class="background-slide__info-contact">
@@ -83,15 +86,21 @@ type PhoneViewModel = {
           gap: .1rem;
           justify-content: start;
           align-items: center;
-          color: var(--background-dark);
+          color: var(--accent-color-300);
           font-size: .9rem;
           cursor: pointer;
           text-decoration: none;
 
+          background-color: var(--background-dark);
+          border-radius: .5rem;
+          padding: .2rem .5rem;
+          font-weight: bold;
+          letter-spacing: 0.1rem;
+
           svg {
             width: 2rem;
             height: 2rem;
-            color: var(--background-dark);
+            color: var(--accent-color-300);
             transform: rotate(270deg);
           }
         }
@@ -107,6 +116,12 @@ type PhoneViewModel = {
           // Centers the text back in, since letter-spacing adds .5rem at the end of the last letter.
           text-indent: .5rem;
           text-transform: uppercase;
+
+          &:disabled {
+            background-color: var(--background-mid);
+            filter: blur(.05rem);
+            // text-decoration: line-through;
+          }
         }
       }
       

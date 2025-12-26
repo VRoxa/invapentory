@@ -26,7 +26,7 @@ import { Item } from "../models/item.model";
         background: var(--contrast);
         border: none;
         font-size: 1.3rem;
-        text-decoration: bold;
+        font-weight: bold;
         color: var(--accent-color-500);
       }
 

@@ -53,7 +53,7 @@ const styles = `
       align-items: center;
       justify-content: center;
       color: black;
-      text-decoration: bold;
+      font-weight: bold;
       font-size: 1rem;
 
       transition: transform 0.5s ease;
