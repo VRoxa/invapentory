@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { map, startWith, Subject, switchMap } from 'rxjs';
+import { firstValueFrom, map, startWith, Subject, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { HeaderComponent } from './components/header.component';
 import { InventoryComponent } from './components/inventory.component';
@@ -28,7 +28,8 @@ export class App {
   );
 
   async save(inventory: Inventory) {
-    console.log('about to save', inventory);
+    const obs$ = this.service.saveInventory(inventory);
+    await firstValueFrom(obs$);
     this.refresh$$.next();
   }
 }

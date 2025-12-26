@@ -46,18 +46,22 @@ const styles = `
       width: 1.5rem;
       height: 1.5rem;
       border-radius: 50%;
+      border-width: .1rem;
+      border-style: solid;
+      background-color: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
       color: black;
-      font-size: .9rem;
+      text-decoration: bold;
+      font-size: 1rem;
 
       transition: transform 0.5s ease;
 
       // Direct color mapping
-      &.red { background-color: rgb(235, 143, 136); }
-      &.yellow { background-color: rgb(235, 214, 136); }
-      &.green { background-color: rgb(136, 235, 166); }
+      &.red     { color: rgb(235, 143, 136); border-color: rgb(235, 143, 136); }
+      &.yellow  { color: rgb(235, 214, 136); border-color: rgb(235, 214, 136); }
+      &.green   { color: rgb(136, 235, 166); border-color: rgb(136, 235, 166); }
     }
 
     &__taste-lab {

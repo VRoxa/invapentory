@@ -1,10 +1,21 @@
-import { Component, inject, output } from "@angular/core";
+import { Component, inject, output, Signal } from "@angular/core";
 import { GlobalStateService } from "../services/global-state.service";
+import { ContactInfoService } from "../services/contact-info.service";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { catchError, map, of, tap } from "rxjs";
+import { PhoneFormatPipe } from "../pipes/phone.pipe";
+
+type PhoneViewModel = {
+  label: string;
+  url: string;
+}
 
 @Component({
   selector: 'app-header',
+  imports: [PhoneFormatPipe],
   template: `
     <div class="background-slide">
+      <div class="background-slide__img"></div>
       <div class="background-slide__info">
         <div class="background-slide__info-settings">
           <svg 
@@ -23,8 +34,20 @@ import { GlobalStateService } from "../services/global-state.service";
             <button (click)="onSave.emit()">Save</button>
           }
         </div>
+
+        <div class="background-slide__info-contact">
+          <a [href]="phone().url" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none">
+              <g stroke-width="0"></g>
+              <g stroke-linecap="round" stroke-linejoin="round"></g>
+              <g>
+                <path d="M4.00655 7.93309C3.93421 9.84122 4.41713 13.0817 7.6677 16.3323C8.45191 17.1165 9.23553 17.7396 10 18.2327M5.53781 4.93723C6.93076 3.54428 9.15317 3.73144 10.0376 5.31617L10.6866 6.4791C11.2723 7.52858 11.0372 8.90532 10.1147 9.8278C10.1147 9.8278 10.1147 9.8278 10.1147 9.8278C10.1146 9.82792 8.99588 10.9468 11.0245 12.9755C13.0525 15.0035 14.1714 13.8861 14.1722 13.8853C14.1722 13.8853 14.1722 13.8853 14.1722 13.8853C15.0947 12.9628 16.4714 12.7277 17.5209 13.3134L18.6838 13.9624C20.2686 14.8468 20.4557 17.0692 19.0628 18.4622C18.2258 19.2992 17.2004 19.9505 16.0669 19.9934C15.2529 20.0243 14.1963 19.9541 13 19.6111" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              </g>
+            </svg>
+            <span>{{ phone().label | phone }}</span>
+          </a>
+        </div>
       </div>
-      <div class="background-slide__img"></div>
     </div>
   `,
   styles: [`
@@ -36,6 +59,10 @@ import { GlobalStateService } from "../services/global-state.service";
       &__info {
         z-index: 2;
         padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
 
         &-settings {
           display: flex;
@@ -47,6 +74,25 @@ import { GlobalStateService } from "../services/global-state.service";
             height: 2rem;
             color: var(--background-dark);
             cursor: pointer;
+          }
+        }
+
+        &-contact a {
+          display: flex;
+          flex-direction: row-reverse;
+          gap: .1rem;
+          justify-content: start;
+          align-items: center;
+          color: var(--background-dark);
+          font-size: .9rem;
+          cursor: pointer;
+          text-decoration: none;
+
+          svg {
+            width: 2rem;
+            height: 2rem;
+            color: var(--background-dark);
+            transform: rotate(270deg);
           }
         }
 
@@ -80,8 +126,8 @@ import { GlobalStateService } from "../services/global-state.service";
         clip-path: polygon(
           0 0,
           100% 0,
-          100% 40%,
-          0 100%
+          100% 100%,
+          0 40%,
         );
       }
 
@@ -96,10 +142,10 @@ import { GlobalStateService } from "../services/global-state.service";
 
         // Just guessing (try and error) the angle that forms the clip-path polygon...
         background: linear-gradient(
-          160deg,
-          var(--background-dark) 50%,
-          var(--contrast) 90%,
-          var(--contrast) 100%
+          20deg,
+          var(--contrast) 10%,
+          var(--background-dark) 60%,
+          var(--background-dark) 100%
         );
 
         mask-image: url('/img/banner.png');
@@ -115,10 +161,24 @@ import { GlobalStateService } from "../services/global-state.service";
 export class HeaderComponent {
 
   state = inject(GlobalStateService);
+  contactInfo = inject(ContactInfoService);
 
   onSave = output<void>();
 
-  public toggleSettings() {
-    this.state.toggleAdmin();
+  phone: Signal<PhoneViewModel> = toSignal(
+    this.contactInfo.getPhone().pipe(
+      catchError(() => of('00000000000')),
+      map(phone => ({
+        label: phone.toString(),
+        url: `https://wa.me/${phone}`
+      })),
+    ),
+    {
+      initialValue: { label: '00000000000', url: 'https://wa.me/00000000000' }
+    }
+  );
+
+  async toggleSettings() {
+    await this.state.toggleAdmin();
   }
 }
