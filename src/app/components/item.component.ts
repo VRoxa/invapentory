@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Item } from '../models/item.model';
 import { CommonModule } from '@angular/common';
 import { QuantityComponent } from './quantity.component';
+import { GlobalStateService } from '../services/global-state.service';
 
 const styles = `
   .item {
@@ -93,7 +94,7 @@ const styles = `
       }
 
       .item__stock {
-        transform: scale(2);
+        transform: scale(1.8);
       }
     }
 
@@ -152,9 +153,11 @@ type ItemViewModel = Item & {
         {{ vm().stock }}
       </div>
 
-      <div class="item__quantity-input">
-        <quantity [item]="item()" />
-      </div>
+      @if (state.isAdmin()) {
+        <div class="item__quantity-input">
+          <quantity [item]="item()" />
+        </div>
+      }
     </div>
   `,
   styles: [styles],
@@ -162,6 +165,9 @@ type ItemViewModel = Item & {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemComponent {
+
+  state = inject(GlobalStateService);
+
   item = input.required<Item>();
   vm = computed<ItemViewModel>(() => {
     const getColor = ({ stock }: Item) => {
