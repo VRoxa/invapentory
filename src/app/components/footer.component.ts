@@ -4,7 +4,9 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
   selector: 'app-footer',
   template: `
     <div class="background-slide">
-      <span><b>© VRoxa</b> - 2025</span>
+      <span>
+        <b>© <a href="https://github.com/VRoxa/invapentory" target="_blank">VRoxa</a></b> - 2025
+      </span>
     </div>
   `,
   styles: [`
@@ -48,6 +50,11 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         z-index: 1;
         padding: 0 .5rem;
         color: var(--background-dark);
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
       }
     }  
   `],
