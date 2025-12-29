@@ -12,7 +12,7 @@ import { FooterComponent } from './components/footer.component';
   imports: [AsyncPipe, HeaderComponent, FooterComponent, InventoryComponent],
   template: `
     @if (inventory$ | async; as inventory) {
-      <app-header (onSave)="save(inventory)" />
+      <app-header (save)="save(inventory)" />
       <inventory [inventory]="inventory" />
       <app-footer />
     }

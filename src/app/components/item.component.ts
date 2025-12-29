@@ -3,6 +3,7 @@ import { Item } from '../models/item.model';
 import { CommonModule } from '@angular/common';
 import { QuantityComponent } from './quantity.component';
 import { GlobalStateService } from '../services/global-state.service';
+import { TranslatePipe } from '../pipes/translate.pipe';
 
 const styles = `
   .item {
@@ -139,7 +140,7 @@ type ItemViewModel = Item & {
 
 @Component({
   selector: 'item',
-  imports: [CommonModule, QuantityComponent],
+  imports: [CommonModule, QuantityComponent, TranslatePipe],
   template: `
     <div class="item" [class.out-of-stock]="vm().stock === 0">
       <div class="item__img-container">
@@ -150,7 +151,7 @@ type ItemViewModel = Item & {
       <div class="item__taste-lab">
         @for (taste of vm().taste; track taste) {
           <span class="taste-bubble">
-            {{ taste }}
+            {{ taste | translate }}
           </span>
         }
       </div>
