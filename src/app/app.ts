@@ -6,6 +6,7 @@ import { InventoryComponent } from './components/inventory.component';
 import { InventoryService } from './services/inventory.service';
 import { Inventory } from './models/item.model';
 import { FooterComponent } from './components/footer.component';
+import INITIAL_SEED from './_temp-init';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class App {
   inventory$ = this.refresh$$.pipe(
     startWith(void 0),
     switchMap(() => this.service.getInventory()),
+    map((result) => result ?? INITIAL_SEED),
     map(({ items }) => [...items].sort(({ stock: a }, { stock: b }) => b - a )),
     map(items => ({ items })),
   );
