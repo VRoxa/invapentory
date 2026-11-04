@@ -6,6 +6,7 @@ export default {
             taste: ['TASTE_STRAWBERRY', 'TASTE_BANANA'],
             imgSrc: 'img/strawberry-banana.png',
             stock: 8,
+            new: true
         },
         {
             taste: ['TASTE_MANGO'],
@@ -26,11 +27,13 @@ export default {
             taste: ['TASTE_BLACKICE', 'TASTE_DRAGONFRUIT', 'TASTE_STRAWBERRY'],
             imgSrc: 'img/black-ice.png',
             stock: 4,
+            new: true
         },
         {
             taste: ['TASTE_LOVE'],
             imgSrc: 'img/love-66.png',
             stock: 1,
+            new: true
         },
         {
             taste: ['TASTE_CHERRY', 'TASTE_COLA'],

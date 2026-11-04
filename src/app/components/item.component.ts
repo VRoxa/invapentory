@@ -67,6 +67,35 @@ const styles = `
       &.green   { color: rgb(136, 235, 166); border-color: rgb(136, 235, 166); }
     }
 
+    &__new-lbl {
+      position: absolute;
+      width: 1rem;
+      height: 0.8rem;
+
+      font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(0.65rem, 2vw, 1.15rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      color: var(--background-dark);
+      background-color: var(--accent-color-700);
+
+      border: 3px double var(--background-dark);
+      display: inline-block;
+      width: max-content;
+      padding: 0.35em 0.4em;
+
+      top: 1.5rem;
+      left: 1.5rem;
+      transform: rotate(-45deg);
+      box-shadow: 2px 2px 0px var(--background-dark);
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
     &__taste-lab {
       display: flex;
       flex-direction: column;
@@ -159,6 +188,12 @@ type ItemViewModel = Item & {
       <div class="item__stock" [ngClass]="vm().stockColor">
         {{ vm().stock }}
       </div>
+
+      @if (vm().new) {
+        <div class="item__new-lbl">
+          {{ 'APP_NEW' | translate }}
+        </div>
+      }
 
       @if (state.isAdmin()) {
         <div class="item__quantity-input">
