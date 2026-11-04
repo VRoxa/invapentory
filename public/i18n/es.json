@@ -2,6 +2,7 @@
   "APP_PASSWORD": "Contraseña",
   "APP_RETAIL": "Retail",
   "TASTE_BLUEBERRY": "Arándano ácido",
+  "TASTE_BLUERAZZ": "Arándanos",
   "TASTE_RASPBERRY": "Frambuesa",
   "TASTE_CHERRY": "Cereza",
   "TASTE_LEMON": "Limón",
@@ -25,5 +26,14 @@
   "TASTE_FCHERRY": "Cereza",
   "TASTE_BERRIES": "Mix de bayas",
   "TASTE_PASSION": "Maracuyá",
-  "TASTE_GUAVA": "Guayaba"
+  "TASTE_GUAVA": "Guayaba",
+  "TASTE_COCOLOCO": "Cocoloco",
+  "TASTE_COTTON_CANDY": "Algodón de azúcar",
+  "TASTE_HAPPY_RANCH": "Happy ranch",
+  "TASTE_MINT": "Menta",
+  "TASTE_MINT_ICE": "Menta helada",
+  "TASTE_MELON": "Melón",
+  "TASTE_PINEAPPLE": "Piña",
+  "TASTE_REDBULL_ICE": "Red Bull",
+  "TASTE_TRIPLE_MELON": "Melón triple"
 }

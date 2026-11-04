@@ -2,6 +2,7 @@
   "APP_PASSWORD": "Password",
   "APP_RETAIL": "Retail",
   "TASTE_BLUEBERRY": "Blueberry sour",
+  "TASTE_BLUERAZZ": "Bluerazz",
   "TASTE_RASPBERRY": "Raspberry",
   "TASTE_CHERRY": "Cherry",
   "TASTE_LEMON": "Lemon",
@@ -25,5 +26,14 @@
   "TASTE_FCHERRY": "Fizzy cherry",
   "TASTE_BERRIES": "Mix berries",
   "TASTE_PASSION": "Passion fruit",
-  "TASTE_GUAVA": "Guava"
+  "TASTE_GUAVA": "Guava",
+  "TASTE_COCOLOCO": "Cocoloco",
+  "TASTE_COTTON_CANDY": "Cotton candy",
+  "TASTE_HAPPY_RANCH": "Happy ranch",
+  "TASTE_MINT": "Mint",
+  "TASTE_MINT_ICE": "Mint ice",
+  "TASTE_MELON": "Melon",
+  "TASTE_PINEAPPLE": "Pineapple",
+  "TASTE_REDBULL_ICE": "Red Bull ice",
+  "TASTE_TRIPLE_MELON": "Triple melon"
 }
