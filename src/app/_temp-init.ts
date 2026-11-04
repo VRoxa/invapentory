@@ -6,7 +6,8 @@ export default {
             taste: ['TASTE_STRAWBERRY', 'TASTE_BANANA'],
             imgSrc: 'img/strawberry-banana.png',
             stock: 8,
-            new: true
+            new: true,
+            ice: true,
         },
         {
             taste: ['TASTE_MANGO'],

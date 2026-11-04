@@ -3,6 +3,7 @@ export interface Item {
   imgSrc: string;
   stock: number;
   new: boolean;
+  ice: boolean;
 }
 
 export interface Inventory {

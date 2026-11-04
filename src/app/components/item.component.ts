@@ -96,6 +96,20 @@ const styles = `
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
+    &__snowflake {
+      position: absolute;
+      font-size: 2.5rem;
+      font-weight: 500;
+
+      bottom: 25%;
+      left: 25%;
+
+      color:rgb(95, 182, 233);
+      text-shadow: 0 0 0.5rem rgba(168, 212, 236, 0.82);
+      
+      z-index: 5;
+    }
+
     &__taste-lab {
       display: flex;
       flex-direction: column;
@@ -125,6 +139,7 @@ const styles = `
         opacity: 1;
         transform: scale(1.2);
       }
+
       .img-idle {
         transform: scale(1.1);
       }
@@ -195,6 +210,10 @@ type ItemViewModel = Item & {
         </div>
       }
 
+      @if (vm().ice) {
+        <div class="item__snowflake">❅</div>
+      }
+
       @if (state.isAdmin()) {
         <div class="item__quantity-input">
           <quantity [item]="item()" />
@@ -207,7 +226,6 @@ type ItemViewModel = Item & {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemComponent {
-
   state = inject(GlobalStateService);
 
   item = input.required<Item>();
