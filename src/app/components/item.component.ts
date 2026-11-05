@@ -16,6 +16,7 @@ const styles = `
     z-index: 1;
 
     &__img-container {
+      position: relative;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -33,6 +34,20 @@ const styles = `
       .img-hover {
         opacity: 0;
         z-index: 3;
+      }
+
+      .item__snowflake {
+        position: absolute;
+        font-size: 2.5rem;
+        font-weight: 500;
+
+        bottom: 0;
+        left: 25%;
+
+        color:rgb(95, 182, 233);
+        text-shadow: 0 0 0.5rem rgba(168, 212, 236, 0.82);
+        
+        z-index: 5;
       }
     }
 
@@ -94,20 +109,6 @@ const styles = `
       box-shadow: 2px 2px 0px var(--background-dark);
 
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    &__snowflake {
-      position: absolute;
-      font-size: 2.5rem;
-      font-weight: 500;
-
-      bottom: 25%;
-      left: 25%;
-
-      color:rgb(95, 182, 233);
-      text-shadow: 0 0 0.5rem rgba(168, 212, 236, 0.82);
-      
-      z-index: 5;
     }
 
     &__taste-lab {
@@ -190,6 +191,10 @@ type ItemViewModel = Item & {
       <div class="item__img-container">
         <img class="img-idle" [src]="vm().imgSrc" [alt]="vm().imgSrc">
         <img class="img-hover" [src]="vm().plainImgSrc" [alt]="vm().imgSrc">
+
+        @if (vm().ice) {
+          <div class="item__snowflake">❅</div>
+        }
       </div>
 
       <div class="item__taste-lab">
@@ -208,10 +213,6 @@ type ItemViewModel = Item & {
         <div class="item__new-lbl">
           {{ 'APP_NEW' | translate }}
         </div>
-      }
-
-      @if (vm().ice) {
-        <div class="item__snowflake">❅</div>
       }
 
       @if (state.isAdmin()) {

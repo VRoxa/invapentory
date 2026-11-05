@@ -28,7 +28,8 @@ export default {
             taste: ['TASTE_BLACKICE', 'TASTE_DRAGONFRUIT', 'TASTE_STRAWBERRY'],
             imgSrc: 'img/black-ice.png',
             stock: 4,
-            new: true
+            new: true,
+            ice: true,
         },
         {
             taste: ['TASTE_LOVE'],
@@ -130,6 +131,7 @@ export default {
             taste: ['TASTE_LEMON', 'TASTE_MINT'],
             imgSrc: 'img/lemon-mint.png',
             stock: 1,
+            ice: true
         },
         {
             taste: ['TASTE_MELON', 'TASTE_PINEAPPLE', 'TASTE_BANANA'],
@@ -140,6 +142,7 @@ export default {
             taste: ['TASTE_MINT_ICE'],
             imgSrc: 'img/mint-ice.png',
             stock: 1,
+            ice: true
         },
         {
             taste: ['TASTE_STRAWBERRY', 'TASTE_MANGO'],
